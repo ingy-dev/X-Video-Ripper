@@ -1,1 +1,0 @@
-# X Ripper uses the Python standard library only.

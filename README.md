@@ -2,36 +2,23 @@
 
 Paste a public [X](https://x.com) post and download the video or GIF.
 
+This is a static site. GitHub Pages serves it directly from this repository. There is no server to run.
+
 X stores GIFs as MP4. X Ripper downloads that file, and the player loops it.
 
-## Run it
+## Publish
 
-Python 3.9 or newer is enough. There are no packages to install.
+In the repository on GitHub, open **Settings → Pages**. Set the source to the `main` branch and the folder `/` (root). The site is then available at:
 
-```bash
-python3 server.py
-```
+https://ingy-dev.github.io/X-Video-Ripper/
 
-Open [http://localhost:8787](http://localhost:8787).
-
-## Deploy
-
-This needs a small server. GitHub Pages cannot run it, because the lookup happens on the server.
-
-The app reads `PORT` and listens on `0.0.0.0`. On Render or Railway, use:
+## Run it locally
 
 ```bash
-python3 server.py
+python3 -m http.server 4173
 ```
 
-A `Dockerfile` is included if you would rather ship a container.
-
-```bash
-docker build -t x-ripper .
-docker run -p 8787:8787 x-ripper
-```
-
-Source: [github.com/ingy-dev/X-Video-Ripper](https://github.com/ingy-dev/X-Video-Ripper)
+Open [http://127.0.0.1:4173](http://127.0.0.1:4173).
 
 ## What it accepts
 
@@ -39,6 +26,5 @@ Source: [github.com/ingy-dev/X-Video-Ripper](https://github.com/ingy-dev/X-Video
 - `https://twitter.com/name/status/123`
 - `https://x.com/i/status/123`
 - FxTwitter and FixupX links
-- `t.co` links that lead to a post
 
-Private, deleted, and login-only posts are unavailable. Photo-only posts have nothing to download.
+Private, deleted, and photo-only posts have nothing to download. The page reads public posts through [FxTwitter](https://github.com/FxEmbed/FxEmbed), which allows browser requests.
